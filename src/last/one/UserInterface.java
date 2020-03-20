@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class UserInterface {
-    private TicketDB ticketDB = new TicketDB();
     private Scanner keyboard;
 
     public void displayParkingGarageTitle() {
@@ -15,7 +14,6 @@ public class UserInterface {
         displayParkingGarageTitle();
         System.out.println("1 - Check/In");
         System.out.println("3 - Close Garage");
-        System.out.println("=> ");
         String selection = keyboard.nextLine();
 
         System.out.println();
@@ -30,16 +28,27 @@ public class UserInterface {
     }
 
     private void exit() {
+        displayParkingGarageTitle();
+        System.out.println("Activity:");
+        System.out.println("Lost Ticket totals: $" + lostTicket());
+        System.out.println("Regular ticket totals: $" + regularTicket());
+    }
+
+    private int regularTicket() {
+    }
+
+    private int LostTicket() {
+
     }
 
     private void addTicket() {
+
     }
 
     private void displayExitingMenu(){
         displayParkingGarageTitle();
         System.out.println("1 - Check/Out");
         System.out.println("2 - Lost Ticket");
-        System.out.println("=> ");
         String selection = keyboard.nextLine();
 
         System.out.println();
@@ -50,10 +59,6 @@ public class UserInterface {
         } else if (selection.equals("2")){
             lostTicket();
         }
-
-    }
-
-    private void lostTicket() {
 
     }
 

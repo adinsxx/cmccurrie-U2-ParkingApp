@@ -20,4 +20,10 @@ public class TicketDB {
     public void addTicket(Ticket ticket){
         tickets.add(ticket);
     }
+
+    public void payTicket(Ticket ticket){
+        tickets.remove(ticket);
+    }
+
+
 }
