@@ -1,18 +1,26 @@
 package last.one;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args) {
-        new UserInterface();
+        Scanner keyboard = new Scanner(System.in);
+//        Ticket ticket = new Ticket();
+        Time time = new Time();
+        TicketTracker tickTrack = new TicketTracker();
+        UserInterface UI = new UserInterface();
+        char selection;
+        boolean choices = true;
+
+        while (choices){
+            UI.displayEnterMenu();
+        }
+
     }
-    private Scanner keyboard;
-
-
 
     public void WriteFile() throws IOException {
         keyboard = new Scanner(System.in);
@@ -23,8 +31,6 @@ public class Main {
         ticketDeck.close();
 
     }
-
-
 
 
 }

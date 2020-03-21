@@ -1,51 +1,75 @@
 package last.one;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class UserInterface {
-    private Scanner keyboard;
+    private static Scanner keyboard = null;
+    private int selection;
+    TicketTracker car = new TicketTracker();
+    Time time = new Time();
 
-    public void displayParkingGarageTitle() {
-        System.out.println("Best Value Parking Garage\n\n =====================");
+    public UserInterface() {
+        keyboard = new Scanner(System.in);
     }
 
-    private void displayEnterMenu(){
+    TicketDB ticketDB = new TicketDB();
+    Ticket ticket = new Ticket() {
+        @Override
+        public int getLostTicketCost() {
+            return super.getLostTicketCost();
+        }
+
+        @Override
+        public int getRegularTicketCost() {
+            return super.getRegularTicketCost();
+        }
+    };
+
+    public void displayParkingGarageTitle() {
+        System.out.println("Best Value Parking Garage\n =====================");
+    }
+
+    public void displayEnterMenu(){
         displayParkingGarageTitle();
         System.out.println("1 - Check/In");
         System.out.println("3 - Close Garage");
-        String selection = keyboard.nextLine();
-
+        selection = keyboard.nextInt();
         System.out.println();
         System.out.println();
-
-        if (selection.equals("1")){
-            addTicket();
-        } else if (selection.equals("3")){
-            exit();
+        if (selection == 1){
+            time.getTimeIn();
         }
-
+        else if (selection == 3){
+            exitProgram();
+        }
     }
 
-    private void exit() {
+    public void exitProgram() {
         displayParkingGarageTitle();
-        System.out.println("Activity:");
-        System.out.println("Lost Ticket totals: $" + lostTicket());
-        System.out.println("Regular ticket totals: $" + regularTicket());
+        System.out.println("Activity to Date");
+        System.out.println(" was collected from " + " Check ins");
+        System.out.println(" was collected from " + " Lost Tickets");
+        System.out.println(" was collected overall");
     }
 
-    private int regularTicket() {
+    public void regularTicket() {
+        displayParkingGarageTitle();
+        System.out.println("Receipt for a vehicle ID " + car.getTicketID());
+        //add in range of hours parked + total hours parked
+        System.out.println(" hours parked ");
+        //Display total cost of ticket
+        System.out.println();
+
     }
 
-    private int LostTicket() {
-
+    public void lostTicket() {
+        displayParkingGarageTitle();
+        System.out.println("Receipt for vehicle ID: ");
+        System.out.println("Lost Ticket");
+        System.out.println("$" + ticket.getLostTicketCost());
     }
 
-    private void addTicket() {
-
-    }
-
-    private void displayExitingMenu(){
+    public void displayExitingMenu(){
         displayParkingGarageTitle();
         System.out.println("1 - Check/Out");
         System.out.println("2 - Lost Ticket");
@@ -54,16 +78,10 @@ public class UserInterface {
         System.out.println();
         System.out.println();
 
-        if (selection.equals("1")){
-            standardTicket();
-        } else if (selection.equals("2")){
-            lostTicket();
-        }
 
     }
 
     private void standardTicket() {
     }
-
 
 }

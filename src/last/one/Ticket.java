@@ -11,6 +11,9 @@ public abstract class Ticket {
         this.regularTicketCost = regularTicketCost;
     }
 
+    protected Ticket() {
+    }
+
     public int getLostTicketCost() {
         return lostTicketCost;
     }
