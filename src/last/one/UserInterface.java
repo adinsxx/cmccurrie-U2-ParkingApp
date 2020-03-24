@@ -33,7 +33,7 @@ public class UserInterface {
         displayParkingGarageTitle();
         System.out.println("1 - Check/In");
         System.out.println("3 - Close Garage");
-        selection = keyboard.nextInt();
+        keyboard.nextInt();
         System.out.println();
         System.out.println();
         if (selection == 1){
