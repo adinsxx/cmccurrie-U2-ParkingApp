@@ -1,11 +1,14 @@
 package last.one;
 
+import com.intellij.sisyphus.api.User;
+
 import java.util.Scanner;
 
 public class UserInterface {
     private static Scanner keyboard = null;
     private int selection;
-    TicketTracker car = new TicketTracker();
+    private static UserInterface instance = null;
+    TicketTracker tTrack = new TicketTracker();
     Time time = new Time();
 
     public UserInterface() {
@@ -32,17 +35,11 @@ public class UserInterface {
     public void displayEnterMenu(){
         displayParkingGarageTitle();
         System.out.println("1 - Check/In");
+        System.out.println("2 - Check/Out");
         System.out.println("3 - Close Garage");
-        keyboard.nextInt();
-        System.out.println();
-        System.out.println();
-        if (selection == 1){
-            time.getTimeIn();
-        }
-        else if (selection == 3){
-            exitProgram();
-        }
+
     }
+
 
     public void exitProgram() {
         displayParkingGarageTitle();
@@ -54,7 +51,7 @@ public class UserInterface {
 
     public void regularTicket() {
         displayParkingGarageTitle();
-        System.out.println("Receipt for a vehicle ID " + car.getTicketID());
+        System.out.println("Receipt for a vehicle ID " + tTrack.getTicketID());
         //add in range of hours parked + total hours parked
         System.out.println(" hours parked ");
         //Display total cost of ticket
@@ -81,7 +78,24 @@ public class UserInterface {
 
     }
 
-    private void standardTicket() {
+    public void checkIn() {
+        System.out.println("Ticket ID: " + tTrack.setTicketID());
+        System.out.println("Time in: " + tTrack.getTime());
     }
 
+    public static UserInterface getUserInterface() {
+        if (instance == null){
+            instance = new UserInterface();
+        }
+        return instance;
+    }
+
+    public char getMenu() {
+        System.out.println("Please Enter Choice: ");
+        String temp = keyboard.nextLine();
+        return temp.charAt(0);
+    }
+
+    public void checkOut() {
+    }
 }

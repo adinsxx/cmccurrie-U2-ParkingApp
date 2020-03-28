@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     Scanner keyboard = new Scanner(System.in);
+
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
 //        Ticket ticket = new Ticket();
@@ -16,8 +17,14 @@ public class Main {
         char selection;
         boolean choices = true;
 
-        while (choices){
+        while (choices) {
             UI.displayEnterMenu();
+            selection = UI.getMenu();
+            switch (selection) {
+                case '1': UI.checkIn(); break;
+                case '2': UI.checkOut(); break;
+                default: choices=false; break;
+            }
         }
 
     }
