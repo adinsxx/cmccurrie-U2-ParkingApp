@@ -7,12 +7,13 @@ import java.util.Scanner;
 
 public class Main {
     Scanner keyboard = new Scanner(System.in);
+    TicketTracker tickTrack = new TicketTracker();
 
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
 //        Ticket ticket = new Ticket();
         Time time = new Time();
-        TicketTracker tickTrack = new TicketTracker();
+
         UserInterface UI = new UserInterface();
         char selection;
         boolean choices = true;
@@ -23,7 +24,7 @@ public class Main {
             switch (selection) {
                 case '1': UI.checkIn(); break;
                 case '2': UI.checkOut(); break;
-                default: choices=false; break;
+                case '3': UI.exitProgram();break;
             }
         }
 
@@ -31,13 +32,17 @@ public class Main {
 
     public void WriteFile() throws IOException {
         keyboard = new Scanner(System.in);
-        FileWriter ticketDeck = new FileWriter("tickedeck.txt");
+        FileWriter ticketDeck = new FileWriter("ticketdeck.txt");
         //add in ticket id + time spent in garage
-        ArrayList<Ticket> writeTickets = new ArrayList<>();
-
+        ticketDeck.write(String.valueOf(tickTrack.setTicketID()) + ", " + tickTrack.getTime());
         ticketDeck.close();
 
     }
+
+//    public void ReadFile() {
+//        tickTrack = new TicketTracker();
+//
+//    }
 
 
 }

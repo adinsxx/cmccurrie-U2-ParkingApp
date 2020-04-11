@@ -1,6 +1,6 @@
 package last.one;
 
-public abstract class Ticket {
+public class Ticket {
     int lostTicketCost;
     int regularTicketCost;
     Time ticketTime = new Time();
@@ -9,9 +9,6 @@ public abstract class Ticket {
     public Ticket(int lostTicketCost, int regularTicketCost) {
         this.lostTicketCost = lostTicketCost;
         this.regularTicketCost = regularTicketCost;
-    }
-
-    protected Ticket() {
     }
 
     public int getLostTicketCost() {

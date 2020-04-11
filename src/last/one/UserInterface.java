@@ -1,12 +1,13 @@
 package last.one;
 
 import com.intellij.sisyphus.api.User;
+import org.ini4j.Reg;
 
 import java.util.Scanner;
 
 public class UserInterface {
     private static Scanner keyboard = null;
-    private int selection;
+    private char selection;
     private static UserInterface instance = null;
     TicketTracker tTrack = new TicketTracker();
     Time time = new Time();
@@ -16,23 +17,13 @@ public class UserInterface {
     }
 
     TicketDB ticketDB = new TicketDB();
-    Ticket ticket = new Ticket() {
-        @Override
-        public int getLostTicketCost() {
-            return super.getLostTicketCost();
-        }
-
-        @Override
-        public int getRegularTicketCost() {
-            return super.getRegularTicketCost();
-        }
-    };
+    RegularTicket ticket = new RegularTicket();
 
     public void displayParkingGarageTitle() {
         System.out.println("Best Value Parking Garage\n =====================");
     }
 
-    public void displayEnterMenu(){
+    public void displayEnterMenu() {
         displayParkingGarageTitle();
         System.out.println("1 - Check/In");
         System.out.println("2 - Check/Out");
@@ -47,14 +38,16 @@ public class UserInterface {
         System.out.println(" was collected from " + " Check ins");
         System.out.println(" was collected from " + " Lost Tickets");
         System.out.println(" was collected overall");
+        System.out.println();
     }
 
     public void regularTicket() {
         displayParkingGarageTitle();
         System.out.println("Receipt for a vehicle ID " + tTrack.getTicketID());
         //add in range of hours parked + total hours parked
-        System.out.println(" hours parked ");
+        System.out.println(time.getTimeOut() + time.getTimeIn() + " hours parked ");
         //Display total cost of ticket
+        System.out.println(ticket.getRegularTicketCost() );
         System.out.println();
 
     }
@@ -66,7 +59,7 @@ public class UserInterface {
         System.out.println("$" + ticket.getLostTicketCost());
     }
 
-    public void displayExitingMenu(){
+    public void displayExitingMenu() {
         displayParkingGarageTitle();
         System.out.println("1 - Check/Out");
         System.out.println("2 - Lost Ticket");
@@ -81,10 +74,11 @@ public class UserInterface {
     public void checkIn() {
         System.out.println("Ticket ID: " + tTrack.setTicketID());
         System.out.println("Time in: " + tTrack.getTime());
+        System.out.println();
     }
 
     public static UserInterface getUserInterface() {
-        if (instance == null){
+        if (instance == null) {
             instance = new UserInterface();
         }
         return instance;
@@ -97,5 +91,14 @@ public class UserInterface {
     }
 
     public void checkOut() {
+
+        displayExitingMenu();
+        selection = getMenu();
+        switch (selection) {
+            case '1':
+                regularTicket(); break;
+            case '2':
+                lostTicket();
+        }
     }
 }

@@ -3,7 +3,8 @@ package last.one;
 public class LostTicket extends Ticket {
     private int lostTicketCost;
 
-    public LostTicket() {
+    public LostTicket(int lostTicketCost, int regularTicketCost) {
+        super(lostTicketCost, regularTicketCost);
     }
 
     public void getLostTicketCost(int lostTicketCost) {

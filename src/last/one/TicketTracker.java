@@ -1,16 +1,16 @@
 package last.one;
 
 public class TicketTracker {
-    private int ticketID = 0;
+    private int ticketID;
     private Time time = new Time();
 
     public int getTicketID() {
         return ticketID;
     }
 
-    public void setTicketID(int ticketID) {
+    public int setTicketID() {
         ticketID++;
-        this.ticketID = ticketID;
+        return this.ticketID = ticketID;
     }
 
     public int getTime() {
